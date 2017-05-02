@@ -18,6 +18,7 @@ The first function performs a measurement and reads the raw measurement data fro
 
 
 ## To Do ##
+- add product to website
 - test compatibility with ESP8266 breakout boards (ESP7 and ESP12)
 - test compatibility with ESP32 breakout board
 - test compatibility with SAMD21 breakout board
