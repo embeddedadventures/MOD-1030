@@ -16,10 +16,13 @@ The first function performs a measurement and reads the raw measurement data fro
 ## Tested with the following boards ##
 - Arduino Uno/compatible
 
+## Contact ##
+Questions/comments/concerns regarding the code? Raise it up as a <a href="https://github.com/embeddedadventures/PLT1001/issues/new">new issue</a> and we will help as soon as possible. You may also contact support@embeddedadventures.com or drances@embeddedadventures.com . Thanks!
+
 
 ## To Do ##
 - add product to website
 - test compatibility with ESP8266 breakout boards (ESP7 and ESP12)
 - test compatibility with ESP32 breakout board
-- test compatibility with SAMD21 breakout board
+- Include support for SAMD21 Arduino core boards
 - implement periodical measurement function
