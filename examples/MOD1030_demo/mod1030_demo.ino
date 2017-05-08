@@ -30,56 +30,69 @@ THE POSSIBILITY OF SUCH DAMAGE.
 // SHT35 MOD-1030 Humidity and Temperature Sensor Arduino test sketch
 // Written originally by Embedded Adventures
 
-
 #include <Wire.h>
 #include <SHT35.h>
 
-#define RSTPIN  7
+#ifdef ESP32
+  #define SDAPIN  21
+  #define SCLPIN  22
+  #define RSTPIN  4
+  #define SERIALCOM Serial
+#elif defined(ARDUINO_SAMD_VARIANT_COMPLIANCE )
+  #define SDAPIN  20
+  #define SCLPIN  21
+  #define RSTPIN  7
+  #define SERIALCOM SerialUSB
+#else
+  #define SDAPIN  A4
+  #define SCLPIN  A5
+  #define RSTPIN  2
+  #define SERIALCOM Serial
+#endif
 
 void setup() {
-  Serial.begin(115200);
-  Serial.println("Welcome to the MOD-1030 (SHT35) Humidity Sensor test sketch!");
-  Serial.println("Embedded Adventures (www.embeddedadventures.com)\n");
-  
-  mod1030.init(A4, A5, RSTPIN);
-  mod1030.enableClockStretch(CLK_STRETCH_ENABLED);
-  translateSREG();
+  SERIALCOM.begin(115200);
+  while(!SERIALCOM);
+  SERIALCOM.println("Hi there");
+  mod1030.init(SDAPIN, SCLPIN, RSTPIN);
+  mod1030.hardReset();
   delay(500);
+  translateSREG();
+  delay(1000);
 }
 
 void loop() {
-  Serial.print("\n---------------\n");
+  SERIALCOM.print("\n---------------\n");
   mod1030.oneShotRead();
-  Serial.print("Celsius:\t");
-  Serial.println(mod1030.getCelsius());
-  Serial.print("Fahrenheit:\t");
-  Serial.println(mod1030.getFahrenheit());
-  Serial.print("RH%:\t\t");
-  Serial.println(mod1030.getHumidity());
-  Serial.print("---------------\n");
+  SERIALCOM.print("Celsius:\t");
+  SERIALCOM.println(mod1030.getCelsius());
+  SERIALCOM.print("Fahrenheit:\t");
+  SERIALCOM.println(mod1030.getFahrenheit());
+  SERIALCOM.print("RH%:\t\t");
+  SERIALCOM.println(mod1030.getHumidity());
+  SERIALCOM.print("---------------\n");
   delay(1000);
-}   
-
-void translateSREG() {
-  Serial.print("\nSREG: ");
-  Serial.println(mod1030.getSREG(), BIN);
-  if (mod1030.alertPending())
-    Serial.println("An alert is pending");
-  if (mod1030.heaterStatus())
-    Serial.println("Heater is ON");
-  else
-    Serial.println("Heater is OFF");
-  if (mod1030.humidityTrackingAlert())
-    Serial.println("RH alert");
-  if (mod1030.temperatureTrackingAlert())
-    Serial.println("Temperature alert");
-  if (mod1030.resetDetected())
-    Serial.println("A system reset occurred recently");
-  if (mod1030.lastCommandStatus())
-    Serial.println("Last command not processed");
-  if (mod1030.lastWriteChecksumStatus())
-    Serial.println("Last write transfer checksum failed");
 }
 
+void translateSREG() {
+  SERIALCOM.print("\nSREG: ");
+  SERIALCOM.println(mod1030.getSREG(), BIN);
+  if (mod1030.alertPending())
+    SERIALCOM.println("An alert is pending");
+  if (mod1030.heaterStatus())
+    SERIALCOM.println("Heater is ON");
+  else
+    SERIALCOM.println("Heater is OFF");
+  if (mod1030.humidityTrackingAlert())
+    SERIALCOM.println("RH alert");
+  if (mod1030.temperatureTrackingAlert())
+    SERIALCOM.println("Temperature alert");
+  if (mod1030.resetDetected())
+    SERIALCOM.println("A system reset occurred recently");
+  if (mod1030.lastCommandStatus())
+    SERIALCOM.println("Last command not processed");
+  if (mod1030.lastWriteChecksumStatus())
+    SERIALCOM.println("Last write transfer checksum failed");
+}
 
 
