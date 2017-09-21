@@ -1,6 +1,6 @@
 # MOD-1030 #
 
-Arduino library and sample sketch for the <a href="">SHT35 Humidity Sensor</a>.
+Arduino library and sample sketch for the <a href="http://www.embeddedadventures.com/sht35_humidity_and_temperature_sensor_mod-1030.html">SHT35 Humidity Sensor</a>.
 
 ## Using the library ##
 The SHT35 Arduino library uses I2C for communication between the sensor and the Arduino. 
@@ -22,7 +22,6 @@ Questions/comments/concerns regarding the code? Raise it up as a <a href="https:
 
 
 ## To Do ##
-- add product to website
 - test compatibility with ESP8266 breakout boards (ESP7 and ESP12)
 - test compatibility with ESP32 breakout board
 - implement periodical measurement function
