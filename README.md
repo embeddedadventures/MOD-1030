@@ -18,7 +18,7 @@ The first function performs a measurement and reads the raw measurement data fro
 - SAMD21-based Arduino boards
 
 ## Contact ##
-Questions/comments/concerns regarding the code? Raise it up as a <a href="https://github.com/embeddedadventures/PLT1001/issues/new">new issue</a> and we will help as soon as possible. You may also contact support@embeddedadventures.com or drances@embeddedadventures.com. Thanks!
+Questions/comments/concerns regarding the code? Raise it up as a <a href="https://github.com/embeddedadventures/MOD-1030/issues/new">new issue</a> and we will help as soon as possible. You may also contact support@embeddedadventures.com or drances@embeddedadventures.com. Thanks!
 
 
 ## To Do ##
